@@ -5,6 +5,7 @@
 #include <fstream>
 #include <stdio.h>
 #include <string.h>
+#include <ctime>
 
 using namespace std;
 using namespace cv;
@@ -62,7 +63,10 @@ int main(int argc, char **argv)
 	}
 	*/
 	//读取一张图片进行测试
-	char name[256] = "加拿大一枝黄花.jpg";
+	char name[256] = "柳叶.jpg";
+	//set a time record
+	time_t begin, end;
+	begin = clock();
 	IplImage* img_sv = GRB2SV(name);
 	Mat mtx(img_sv);
 	//EM algorithm
@@ -75,11 +79,23 @@ int main(int argc, char **argv)
 	Mat HoCS_Features_Test = CalCurvatures(contour, img_sv->height, img_sv->width);
 	
 	vector <int> res_list = CompareLeaf(HoCS_Features_Test);
+	end = clock();
+	cout<<"runtime: "<<double(end-begin)/CLOCKS_PER_SEC<<"seconds"<<endl; 
 	for(int i = 0; i < res_list.size(); i++)
 	{
 		int species = (res_list[i]) / 10;
 		printf("第%d可能的物种是：%s\n", i, LeafChinese[species]);
+		//然后再返回可能是该物种的图片
+		char img_path[20] = ".\\Database\\";
+		char name[256];
+		memset(name, 0, 256);
+		sprintf(name, "%s%d\\%d (%d).jpg", img_path, species+1, species+1, 2);
+		IplImage *image;  
+		image=cvLoadImage(name);//载入图像  
+		cvNamedWindow(name, CV_WINDOW_AUTOSIZE); 
+		cvShowImage(name, image);   
 	}
 	printf("\n");
+	cvWaitKey(0);  
 	return 0;
 }  

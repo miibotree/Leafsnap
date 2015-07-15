@@ -4,6 +4,8 @@
 
 using namespace cv;
 
+CvMemStorage *storage = cvCreateMemStorage(0);  
+
 CvSeq* cutFPRegion(Mat M)
 {
 	//先进行轮廓提取,只提取出最外层轮廓
@@ -11,7 +13,7 @@ CvSeq* cutFPRegion(Mat M)
 	IplImage *dsw = cvCreateImage(cvSize(M.cols,M.rows), 8, 1); 
 	IplImage *dst = cvCreateImage(cvSize(M.cols,M.rows), 8, 3); 
 	
-	CvMemStorage *storage = cvCreateMemStorage(0);  
+	cvClearMemStorage(storage);  
 	CvSeq *first_contour = NULL;   
 
 	cvThreshold(&src, dsw, 100, 255, CV_THRESH_BINARY);
@@ -21,7 +23,7 @@ CvSeq* cutFPRegion(Mat M)
 	//外轮廓也可能有多个，所以我们需要选取出最主要的，也就是最大的外轮廓
 	//这一步就是cut false positive,虽然没有在图上体现出来，但是我们只要获得了最大轮廓就相当于做了这一步
 	//因为后面的步骤只用到了轮廓这个特征点集
-	CvSeq *max_contour;//该变量保存了最大的那个轮廓 
+	CvSeq *max_contour = first_contour;//该变量保存了最大的那个轮廓 
 	double max_area = 0;
 	double area = 0;
     int cnt = 0;    
@@ -52,6 +54,6 @@ CvSeq* cutFPRegion(Mat M)
     //cvShowImage( "2.3 RemoveFalsePositive", dst );    
 	cvReleaseImage(&dsw);  
 	cvReleaseImage(&dst);  
-	cvReleaseMemStorage(&storage);  
+	//cvReleaseMemStorage(&storage);  
 	return max_contour;
 }
