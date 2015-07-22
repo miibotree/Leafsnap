@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+	android:orientation = "vertical">
+    <ImageView 
+        android:id="@+id/myImageView"
+        android:layout_width="300dp"
+        android:layout_height="200dp" 
+        android:scaleType = "fitCenter"
+        android:layout_gravity = "center_vertical"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+	    android:layout_height="match_parent" 
+		android:orientation ="vertical">
+		
+        <EditText 
+	        android:id="@+id/ipEdit"
+	       	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:hint = "请输入服务器的IP地址"
+		/>
+                
+	    <Button
+	        android:id="@+id/TakePhotoButton"
+	        android:layout_gravity = "center_horizontal"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="take a photo!" />
+	    
+	    <Button
+	        android:id="@+id/SnapButton"
+	        android:layout_gravity = "center_horizontal"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="snap it!" />    
+    
+    </LinearLayout>
+    
+</LinearLayout>
