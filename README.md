@@ -1,12 +1,17 @@
 # Leafsnap
+
 a summer trainning project in ZJU
 ----------------------------------------------------------------------------------------------------------------------------
 1.Directory
-LeafClassity is a script that classity whether the image contains a leaf or not, by using SVM with RBF kernel on Matlab.
-LeafsnapAndroid is a Android Clinet, which can take a photo and put he photo onto the Server, to detect the species of the leaves.
+LeafClassity 
+  LeafClassityis a script that classity whether the image contains a leaf or not, by using SVM with RBF kernel on Matlab.
+
+LeafsnapAndroid 
+  LeafsnapAndroid is a Android Clinet, which can take a photo and put he photo onto the Server, to detect the species of the leaves.
   when using the Client, please set the Server's IP address first.
-LeafsnapServer is a program mainly to compute the image's HoCS features, using the features to judge which speceis the leaf belongs
-  to.And finally return the result to the Client.
+
+LeafsnapServer
+  LeafsnapServer is a program mainly to compute the image's HoCS features, using the features to judge which speceis the leaf belongs to.And finally return the result to the Client.
 
 ----------------------------------------------------------------------------------------------------------------------------
 2.Platform
